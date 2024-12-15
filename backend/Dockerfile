@@ -14,7 +14,7 @@ RUN yarn build
 
 RUN chown -R 1000:1002 .
 
-EXPOSE 8000
+EXPOSE 8100
 
 CMD ["yarn", "start:prod"]
 #CMD ["yarn", "start:dev"]
