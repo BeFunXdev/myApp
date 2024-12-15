@@ -5,12 +5,12 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 // import { Router } from 'next/router'
 import { PropsWithChildren, useState } from 'react'
 
-const npConfig = {
-	method: 'localStorage',
-	allowList: {
-		user: []
-	}
-}
+// const npConfig = {
+// 	method: 'localStorage',
+// 	allowList: {
+// 		user: []
+// 	}
+// }
 
 // const progress = new ProgressBar({
 // 	size: 5,

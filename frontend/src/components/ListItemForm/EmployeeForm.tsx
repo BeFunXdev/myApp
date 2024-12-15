@@ -13,7 +13,7 @@ interface IEmployeeItemForm extends ListItemBaseProps {
 }
 
 const EmployeeItemForm = ({setItems, setIsActive, item}: IEmployeeItemForm) => {
-	const { register, control, reset, handleSubmit, formState: {errors} } = useForm<TypeEmployeeFormState>({
+	const { register, control, handleSubmit, formState: {errors} } = useForm<TypeEmployeeFormState>({
 		defaultValues: {
 			name: item.name,
 			middleName: item.middleName,
@@ -25,7 +25,7 @@ const EmployeeItemForm = ({setItems, setIsActive, item}: IEmployeeItemForm) => {
 
 	const {createEmployee} = useCreateEmployee()
 
-	const onSubmit = (data: any) => {
+	const onSubmit = (data: TypeEmployeeFormState) => {
 		setIsActive()
 		createEmployee(data)
 	}

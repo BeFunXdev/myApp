@@ -21,8 +21,11 @@ const AddEmployeeItem = ({setItems, setIsActive, ...rest}: IListAddItemInput) =>
 					name: '',
 					surname: '',
 					middleName: '',
-					DateOfEmployment: new Date(),
-					post: ''
+					DateOfEmployment: '',
+					post: {
+						id: '',
+						name: ''
+					}
 				}
 			]
 		})

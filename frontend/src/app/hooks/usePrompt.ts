@@ -1,7 +1,5 @@
-import { useQuery } from '@tanstack/react-query'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { promptApiService } from '@/service/promptApi.service'
-import { IPromptResponse } from '@/types/prompt.types'
 
 export function usePrompt() {
 	const [prompt, setPrompt] = useState<{employeeId: string, message: string}>()

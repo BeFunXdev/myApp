@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction } from 'react'
 import { IPostResponse, TypePostFormState } from '@/types/post.types'
 import { useCreatePost } from '@/app/hooks/useCratePost'
 import useUpdatePost from '@/app/hooks/useUpdatePost'
+import {TypeEmployeeFormState} from "@/types/employee.types";
 
 interface IPostItemForm {
 	item: IPostResponse
@@ -22,10 +23,13 @@ const PostItemForm = ({setItems, item, setIsActive}: IPostItemForm) => {
 	const {createPost, isCreatePending} = useCreatePost()
 	const {updatePost, isUpdatePending} = useUpdatePost()
 
-	const onSubmit = (data: any) => {
-		console.log(data)
+	const onSubmit = (data: Partial<TypeEmployeeFormState>) => {
 		setIsActive()
-		item.id ? updatePost({id: item.id, data}) : createPost(data)
+		if (item.id) {
+			updatePost({id: item.id, data})
+		} else {
+			createPost(data)
+		}
 	}
 
 	return (

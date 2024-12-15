@@ -8,7 +8,7 @@ import useDeletePost from '@/app/hooks/useDeletePost'
 import EditIcon from '@mui/icons-material/Edit';
 
 const PostView = () => {
-	const {items, setItems, isSuccess, isLoading} = usePost()
+	const {items, setItems, isLoading} = usePost()
 	const [isCreatedPost, setIsCreatedPost] = useState(false)
 	const [editId, setEditId] = useState('')
 
@@ -23,7 +23,7 @@ const PostView = () => {
 		<List>
 			<AddPostItem setItems={setItems} setIsActive={setIsCreatedPost} disabled={isCreatedPost}/>
 			{isLoading ? <div>Loading</div> : (
-				items?.map((item, index) => {
+				items?.map((item) => {
 					return item.id == '' || item.id == editId? (
 						<PostForm key={item.id} item={item} setItems={setItems} setIsActive={reset}/>
 					) : (

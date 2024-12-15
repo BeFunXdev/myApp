@@ -4,11 +4,11 @@ import { TypeEmployeeFormState } from '@/types/employee.types'
 import { usePost } from '@/app/hooks/usePost'
 
 interface IPostSelectProps {
-	control: Control<TypeEmployeeFormState, any>
+	control: Control<TypeEmployeeFormState, unknown>
 }
 
 const PostSelect = ({control}: IPostSelectProps) => {
-	const {items, setItems, isSuccess, isLoading} = 	usePost()
+	const {items} = 	usePost()
 
 	return (
 		<Controller

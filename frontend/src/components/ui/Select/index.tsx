@@ -1,20 +1,15 @@
 import {
-	Autocomplete,
-	Box,
 	CircularProgress,
 	FormControl, FormControlProps, FormHelperText,
 	InputLabel,
 	MenuItem,
 	Select,
-	TextField,
-	Typography
 } from '@mui/material'
 import { IPostResponse } from '@/types/post.types'
-import { useRef, useState } from 'react'
 
 interface ISelectProps extends FormControlProps {
 	value: IPostResponse | undefined
-	onChange: (...event: any[]) => void
+	onChange: (...event: unknown[]) => void
 	data: IPostResponse[] | undefined
 	helperText: string
 }
