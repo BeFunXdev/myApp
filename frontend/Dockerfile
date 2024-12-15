@@ -10,7 +10,7 @@ COPY . .
 
 RUN yarn build
 
-RUN chown -R 1000:1002 .
+#RUN chown -R 1000:1002 .
 
 EXPOSE 3000
 
