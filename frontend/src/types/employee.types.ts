@@ -6,7 +6,7 @@ export interface IEmployeeResponse {
 	surname: string
 	middleName: string
 	DateOfEmployment: string
-	post: IPostResponse
+	post: string | IPostResponse
 }
 
-export type TypeEmployeeFormState = Partial<Omit<IEmployeeResponse, 'id'>>
+export type TypeEmployeeFormState = Partial<Omit<IEmployeeResponse, 'id' | 'DateOfEmployment'>>

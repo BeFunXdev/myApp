@@ -42,7 +42,7 @@ const PostItemForm = ({setItems, item, setIsActive}: IPostItemForm) => {
 						message: "Минимальная длина названия должности должна быть не менее 5"
 					},
 					pattern: {
-						value: /[A-Za-z]/,
+						value: /[A-Za-zА-Яа-я]/,
 						message: "В названии могут быть только буквы"
 					}
 				})} />

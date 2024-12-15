@@ -8,7 +8,7 @@ import {
 import { IPostResponse } from '@/types/post.types'
 
 interface ISelectProps extends FormControlProps {
-	value: IPostResponse | undefined
+	value: string | IPostResponse | undefined
 	onChange: (...event: unknown[]) => void
 	data: IPostResponse[] | undefined
 	helperText: string
@@ -19,7 +19,8 @@ const SelectInput = ({onChange, value, data, helperText, ...rest}: ISelectProps)
 		<FormControl style={{width: 200}} {...rest}>
 			<InputLabel>Должность</InputLabel>
 			<Select
-				value={value?.id}
+				defaultValue={''}
+				value={typeof value == "object" ? value.id : value}
 				onChange={onChange}
 				label="Должность"
 			>

@@ -51,10 +51,7 @@ export class AiApiService {
                   'RqUID': 'd5372802-3a8f-4095-a787-bf2ff89e0d56',
                   'Authorization': 'Basic YmRmZDkyZWItNTA2Yi00YjRjLWJiOTItNjg0YTMwY2Q2NzlkOjY0ZTk4Y2ViLTE5N2MtNDJhNi1hZTZhLTdmN2JlZjJmN2Y4Yw=='
               },
-              withCredentials: true,
-              httpsAgent: new (require('https').Agent)({
-                  rejectUnauthorized: false // Ignore self-signed certificate errors
-              })
+              withCredentials: true
 
           }
         )
@@ -103,7 +100,7 @@ export class AiApiService {
             messages: [
                 {
                     role: "user",
-                    content: 'Напиши поздравления сотрудника с днем рождения '
+                    content: "Напиши поздравления сотрудника с днем рождения "
                 }
             ],
             n: 1,

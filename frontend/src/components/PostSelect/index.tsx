@@ -8,7 +8,7 @@ interface IPostSelectProps {
 }
 
 const PostSelect = ({control}: IPostSelectProps) => {
-	const {items} = 	usePost()
+	const {items} = usePost()
 
 	return (
 		<Controller
@@ -16,9 +16,12 @@ const PostSelect = ({control}: IPostSelectProps) => {
 			rules={{
 				required: "Полу должно быть обязательно заполнено",
 			}}
-			render={({ field: {value, onChange}, formState: {errors} }) => (
-				<SelectInput  value={value} onChange={onChange} data={items} error={!!errors.post?.message} helperText={errors.post?.message ?? ''}/>
-			)}
+			render={({ field: {value, onChange}, formState: {errors} }) => {
+				console.log('log', value)
+				return (
+					<SelectInput  value={value} onChange={onChange} data={items} error={!!errors.post?.message} helperText={errors.post?.message ?? ''}/>
+				)
+			}}
 			name='post'
 		/>
 	)

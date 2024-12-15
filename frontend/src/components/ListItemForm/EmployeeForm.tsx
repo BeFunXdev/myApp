@@ -18,8 +18,7 @@ const EmployeeItemForm = ({setItems, setIsActive, item}: IEmployeeItemForm) => {
 			name: item.name,
 			middleName: item.middleName,
 			surname: item.surname,
-			post: item.post,
-			DateOfEmployment: item.DateOfEmployment
+			post: item.post
 		}
 	})
 
@@ -40,7 +39,7 @@ const EmployeeItemForm = ({setItems, setIsActive, item}: IEmployeeItemForm) => {
 						message: "Минимальная длина фамилии должна быть не менее 4"
 					},
 					pattern: {
-						value: /[A-Za-z]/,
+						value: /[A-Za-zА-Яа-я]/,
 						message: "В фамилии могут быть только буквы"
 					}
 				})} />
@@ -51,7 +50,7 @@ const EmployeeItemForm = ({setItems, setIsActive, item}: IEmployeeItemForm) => {
 						message: "Минимальная длина имени должна быть не менее 3"
 					},
 					pattern: {
-						value: /[A-Za-z]/,
+						value: /[A-Za-zА-Яа-я]/,
 						message: "В имени могут быть только буквы"
 					}
 				})} />
@@ -62,7 +61,7 @@ const EmployeeItemForm = ({setItems, setIsActive, item}: IEmployeeItemForm) => {
 						message: "Минимальная длина отчества должна быть не менее 4"
 					},
 					pattern: {
-						value: /[A-Za-z]/,
+						value: /[A-Za-zА-Яа-я]/,
 						message: "В отчестве могут быть только буквы"
 					}
 				})} />
