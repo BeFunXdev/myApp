@@ -4,49 +4,10 @@ import {HttpService} from "@nestjs/axios";
 import {IToken} from "./api.types";
 @Injectable()
 export class AiApiService {
-    // accessToken = ''
-    // test = false
-
     constructor(
         private prisma: PrismaService,
         private readonly httpService: HttpService
     ) {
-        // this.httpService.axiosRef.interceptors.request.use( async (config) => {
-        //
-        //     if (!config?.headers?.RqUID && !this.accessToken) {
-        //         console.log('okey')
-        //         console.log(this.accessToken)
-        //         this.accessToken = await this.getAccessToken().then(data => data.data.access_token)
-        //     }
-        //
-        //     if (config?.headers && this.accessToken && !config?.headers?.RqUID) {
-        //         console.log('ok')
-        //         config.headers.Authorization = `Bearer ${this.accessToken}`
-        //     }
-        //
-        //     return config
-        // })
-        //
-        // this.httpService.axiosRef.interceptors.response.use(
-        //     config => config,
-        //     async error => {
-        //         const originalRequest = error.config
-        //
-        //         if (
-        //             !error.config?.headers?.RqUID && !this.test
-        //         ) {
-        //             this.test = true
-        //             console.log('error')
-        //             console.log(this.accessToken)
-        //             return this.httpService.axiosRef.request(originalRequest)
-        //         } else {
-        //             console.log('clear')
-        //             this.accessToken = ''
-        //         }
-        //
-        //         throw new BadRequestException('test')
-        //     }
-        // )
     }
 
     async getAccessToken() {
@@ -90,15 +51,15 @@ export class AiApiService {
         const accessToken = await this.getAccessToken().then(data => data.data.access_token)
 
         console.log('accessToken', accessToken)
-
+        console.log(JSON.stringify(this.getPromptData(promptUser)))
         return this.httpService.axiosRef.post(
             'https://gigachat.devices.sberbank.ru/api/v1/chat/completions',
             this.getPromptData(promptUser),
             {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'Authorization': accessToken
+                    'Authorization': `Bearer ${accessToken}`
                 }
             }
         )
