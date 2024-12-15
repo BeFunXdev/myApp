@@ -1,5 +1,5 @@
 import { useEmployee } from '@/app/hooks/useEmployee'
-import { Button, CircularProgress, List, ListItem, ListItemIcon } from '@mui/material'
+import {Button, CircularProgress, Divider, List, ListItem, ListItemIcon} from '@mui/material'
 import AddListItem from '@/components/AddListItem/EmployeeItem'
 import EmployeeItemForm from '@/components/ListItemForm/EmployeeForm'
 import EditIcon from '@mui/icons-material/Edit'
@@ -17,7 +17,7 @@ const EmployeeView = () => {
 
 	const {deleteEmployee, isDeletePending} = useDeleteEmployee()
 
-	const {getPrompt, prompt} = usePrompt()
+	const {getPrompt, prompt, isLoadingPrompt} = usePrompt()
 
 	const reset = () => {
 		setIsCreating(false)
@@ -32,15 +32,15 @@ const EmployeeView = () => {
 					return item.id == '' || item.id == editId ? (
 						<EmployeeItemForm key={item.id} setIsActive={reset} item={item} setItems={setItems}/>
 					) : (
-						<ListItem key={item.id}>
+						<ListItem key={item.id} style={{flexWrap: 'wrap'}}>
 							<strong className={styled.employeeRow}>ФИО:</strong> {item.surname} {item.name} {item.middleName}
 							<strong className={styled.employeeRow}>Должность: </strong> {typeof item.post == 'object' ? item.post.name : item.post}
 							<strong className={styled.employeeRow}>Дата принятия на работу:</strong> {new Date(item.DateOfEmployment).toLocaleDateString()}
 							<ListItemIcon>
-								<Button onClick={async () => {
+								<Button disabled={isLoadingPrompt} onClick={async () => {
 									await getPrompt(item.id)
 								}}>
-									{isDeletePending ? <CircularProgress size={15} /> : <MessageIcon fontSize={'small'} />}
+									{isLoadingPrompt ? <CircularProgress size={15} /> : <MessageIcon fontSize={'small'} />}
 								</Button>
 								<Button onClick={() => {
 									setEditId(item.id)
@@ -53,7 +53,14 @@ const EmployeeView = () => {
 									{isDeletePending ? <CircularProgress size={15} /> : <DeleteOutlineIcon fontSize={'small'} />}
 								</Button>
 							</ListItemIcon>
-							{prompt && prompt.employeeId == item.id ? prompt.message : ''}
+							<div style={{flex: '1 0 100%'}}>
+								{prompt && prompt.employeeId == item.id ? (
+									<>
+										<Divider />
+										{prompt.message}
+									</>
+								) : ''}
+							</div>
 						</ListItem>
 					)
 				})
