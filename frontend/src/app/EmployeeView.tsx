@@ -34,7 +34,7 @@ const EmployeeView = () => {
 					) : (
 						<ListItem key={item.id}>
 							<strong className={styled.employeeRow}>ФИО:</strong> {item.surname} {item.name} {item.middleName}
-							<strong className={styled.employeeRow}>Должность: </strong> {item.post.name}
+							<strong className={styled.employeeRow}>Должность: </strong> {typeof item.post == 'object' ? item.post.name : item.post}
 							<strong className={styled.employeeRow}>Дата принятия на работу:</strong> {new Date(item.DateOfEmployment).toLocaleDateString()}
 							<ListItemIcon>
 								<Button onClick={async () => {

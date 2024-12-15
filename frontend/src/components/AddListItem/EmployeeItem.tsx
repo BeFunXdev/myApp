@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction } from 'react'
-import {TypeEmployeeFormState} from '@/types/employee.types'
+import {IEmployeeResponse} from '@/types/employee.types'
 import { ListItemButton, ListItemButtonProps, ListItemIcon, ListItemText } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 
 export interface IListAddItemInput extends ListItemButtonProps {
-	setItems: Dispatch<SetStateAction<TypeEmployeeFormState[] | undefined>>
+	setItems: Dispatch<SetStateAction<IEmployeeResponse[] | undefined>>
 	setIsActive: Dispatch<SetStateAction<boolean>>
 }
 const AddEmployeeItem = ({setItems, setIsActive, ...rest}: IListAddItemInput) => {
@@ -21,6 +21,7 @@ const AddEmployeeItem = ({setItems, setIsActive, ...rest}: IListAddItemInput) =>
 					name: '',
 					surname: '',
 					middleName: '',
+					DateOfEmployment: '',
 					post: ''
 				}
 			]
