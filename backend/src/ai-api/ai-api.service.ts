@@ -43,16 +43,14 @@ export class AiApiService {
     async getAccessToken() {
         const accessToken = this.httpService.axiosRef.post<IToken>(
           'https://ngw.devices.sberbank.ru:9443/api/v2/oauth',
-          'scope=GIGACHAT_API_PERS',
+          "scope=GIGACHAT_API_PERS",
           {
               headers: {
                   'Content-Type': 'application/x-www-form-urlencoded',
                   'Accept': 'application/json',
                   'RqUID': 'd5372802-3a8f-4095-a787-bf2ff89e0d56',
-                  'Authorization': 'Basic YmRmZDkyZWItNTA2Yi00YjRjLWJiOTItNjg0YTMwY2Q2NzlkOjY0ZTk4Y2ViLTE5N2MtNDJhNi1hZTZhLTdmN2JlZjJmN2Y4Yw=='
-              },
-              withCredentials: true
-
+                  "Authorization": "Basic YmRmZDkyZWItNTA2Yi00YjRjLWJiOTItNjg0YTMwY2Q2NzlkOjY0ZTk4Y2ViLTE5N2MtNDJhNi1hZTZhLTdmN2JlZjJmN2Y4Yw=="
+              }
           }
         )
         return await accessToken
