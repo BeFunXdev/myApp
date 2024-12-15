@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import {IEmployeeResponse, TypeEmployeeFormState} from '@/types/employee.types'
+import {TypeEmployeeFormState} from '@/types/employee.types'
 import { ListItemButton, ListItemButtonProps, ListItemIcon, ListItemText } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 
