@@ -6,7 +6,11 @@ import {HttpModule} from "@nestjs/axios";
 
 @Module({
   imports: [HttpModule.register({
-    timeout: 1000
+    timeout: 1000,
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    httpsAgent: new (require('https').Agent)({
+      rejectUnauthorized: false // Отключаем проверку SSL
+    })
   })],
   controllers: [AiApiController],
   providers: [AiApiService, PrismaService],
