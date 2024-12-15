@@ -13,8 +13,11 @@ const PostSelect = ({control}: IPostSelectProps) => {
 	return (
 		<Controller
 			control={control}
-			render={({ field: {value, onChange} }) => (
-				<SelectInput value={value} onChange={onChange} data={items} />
+			rules={{
+				required: "Полу должно быть обязательно заполнено",
+			}}
+			render={({ field: {value, onChange}, formState: {errors} }) => (
+				<SelectInput  value={value} onChange={onChange} data={items} error={!!errors.post?.message} helperText={errors.post?.message ?? ''}/>
 			)}
 			name='post'
 		/>

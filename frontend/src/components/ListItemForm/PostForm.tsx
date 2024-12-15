@@ -13,7 +13,7 @@ interface IPostItemForm {
 }
 
 const PostItemForm = ({setItems, item, setIsActive}: IPostItemForm) => {
-	const { register, handleSubmit } = useForm<TypePostFormState>({
+	const { register, handleSubmit, formState: {errors} } = useForm<TypePostFormState>({
 		defaultValues: {
 			name: item.name
 		}
@@ -31,7 +31,17 @@ const PostItemForm = ({setItems, item, setIsActive}: IPostItemForm) => {
 	return (
 		<ListItem>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<Input {...register('name')} />
+				<Input error={!!errors.name?.message} helperText={errors.name?.message} {...register('name', {
+					required: "Полу должно быть обязательно заполнено",
+					minLength: {
+						value: 5,
+						message: "Минимальная длина названия должности должна быть не менее 5"
+					},
+					pattern: {
+						value: /[A-Za-z]/,
+						message: "В названии могут быть только буквы"
+					}
+				})} />
 				<Button type={'submit'} variant="contained" disabled={isUpdatePending || isCreatePending}>
 					{(isUpdatePending || isCreatePending) ?? <CircularProgress size={15} />}
 					Save
