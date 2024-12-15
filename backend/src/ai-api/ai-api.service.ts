@@ -13,8 +13,14 @@ export class AiApiService {
     ) {
         this.httpService.axiosRef.interceptors.request.use( async (config) => {
 
-            if (config?.headers && this.accessToken) {
+            if (!config?.headers?.RqUID && !this.accessToken) {
                 console.log('okey')
+                console.log(this.accessToken)
+                this.accessToken = await this.getAccessToken().then(data => data.data.access_token)
+            }
+
+            if (config?.headers && this.accessToken && !config?.headers?.RqUID) {
+                console.log('ok')
                 config.headers.Authorization = `Bearer ${this.accessToken}`
             }
 
@@ -26,13 +32,14 @@ export class AiApiService {
             async error => {
                 const originalRequest = error.config
 
-                console.log(error)
-
                 if (
                     !error.config?.headers?.RqUID
                 ) {
-                    this.accessToken = await this.getAccessToken().then(data => data.data.access_token)
+                    console.log('error')
+                    console.log(this.accessToken)
                     return this.httpService.axiosRef.request(originalRequest)
+                } else {
+                    this.accessToken = ''
                 }
 
                 throw new BadRequestException('test')
