@@ -6,6 +6,7 @@ import {IToken} from "./api.types";
 export class AiApiService {
 
     accessToken = ''
+    test = false
 
     constructor(
         private prisma: PrismaService,
@@ -33,12 +34,14 @@ export class AiApiService {
                 const originalRequest = error.config
 
                 if (
-                    !error.config?.headers?.RqUID
+                    !error.config?.headers?.RqUID && !this.test
                 ) {
+                    this.test = true
                     console.log('error')
                     console.log(this.accessToken)
                     return this.httpService.axiosRef.request(originalRequest)
                 } else {
+                    console.log('clear')
                     this.accessToken = ''
                 }
 
