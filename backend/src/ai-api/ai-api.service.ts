@@ -52,7 +52,7 @@ export class AiApiService {
 
         console.log('accessToken', accessToken)
         console.log(JSON.stringify(this.getPromptData(promptUser)))
-        return this.httpService.axiosRef.post(
+        return await this.httpService.axiosRef.post(
             'https://gigachat.devices.sberbank.ru/api/v1/chat/completions',
             this.getPromptData(promptUser),
             {
@@ -62,7 +62,7 @@ export class AiApiService {
                     'Authorization': `Bearer ${accessToken}`
                 }
             }
-        )
+        ).then(data => data.data)
     }
 
     private getPromptData(employee) {
