@@ -11,3 +11,9 @@
 .employeeRow {
   margin: 0px 5px;
 }
+
+.skeletonRow {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

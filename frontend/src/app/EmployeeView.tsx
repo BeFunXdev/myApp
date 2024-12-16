@@ -1,5 +1,5 @@
 import { useEmployee } from '@/app/hooks/useEmployee'
-import {Button, CircularProgress, Divider, List, ListItem, ListItemIcon} from '@mui/material'
+import {Button, CircularProgress, Divider, List, ListItem, ListItemIcon, Skeleton} from '@mui/material'
 import AddListItem from '@/components/AddListItem/EmployeeItem'
 import EmployeeItemForm from '@/components/ListItemForm/EmployeeForm'
 import EditIcon from '@mui/icons-material/Edit'
@@ -27,7 +27,14 @@ const EmployeeView = () => {
 	return(
 		<List>
 			<AddListItem setItems={setItems} setIsActive={setIsCreating} disabled={isCreating}/>
-			{isLoading ? <div>Loading</div> : (
+			{isLoading ? (
+				<div className={styled.skeletonRow}>
+					<Skeleton variant="rounded" width={'100%'} height={48} />
+					<Skeleton variant="rounded" width={'100%'} height={48} />
+					<Skeleton variant="rounded" width={'100%'} height={48} />
+					<Skeleton variant="rounded" width={'100%'} height={48} />
+				</div>
+			) : (
 				items?.map((item) => {
 					return item.id == '' || item.id == editId ? (
 						<EmployeeItemForm key={item.id} setIsActive={reset} item={item} setItems={setItems}/>
@@ -54,10 +61,10 @@ const EmployeeView = () => {
 								</Button>
 							</ListItemIcon>
 							<div style={{flex: '1 0 100%'}}>
-								{prompt && prompt.employeeId == item.id ? (
+								{prompt[item.id] ? (
 									<>
 										<Divider />
-										{prompt.message}
+										{prompt[item.id]}
 									</>
 								) : ''}
 							</div>
