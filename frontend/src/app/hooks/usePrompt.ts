@@ -6,7 +6,7 @@ export function usePrompt() {
 	const [isLoadingPrompt, setIsLoadingPrompt] = useState(false)
 
 	const getPrompt = async (employeeId: string) => {
-		await setIsLoadingPrompt(true)
+		setIsLoadingPrompt(true)
 		setPrompt({employeeId, message: await promptApiService.prompt(employeeId).then(data => {
 				setIsLoadingPrompt(false)
 				return  data.data.choices[0].message.content
