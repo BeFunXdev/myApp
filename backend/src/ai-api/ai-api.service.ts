@@ -42,16 +42,12 @@ export class AiApiService {
 
         if (!employee) throw new NotFoundException('Not found employee')
 
-        console.log('employee: ', employee)
-
         return await this.gigaChatPrompt(employee)
     }
 
     private async gigaChatPrompt(promptUser) {
         const accessToken = await this.getAccessToken().then(data => data.data.access_token)
 
-        console.log('accessToken', accessToken)
-        console.log(JSON.stringify(this.getPromptData(promptUser)))
         return await this.httpService.axiosRef.post(
             'https://gigachat.devices.sberbank.ru/api/v1/chat/completions',
             this.getPromptData(promptUser),
